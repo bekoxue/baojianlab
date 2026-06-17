@@ -23,6 +23,27 @@ const projects = [
     status: "开发中",
   },
   {
+    title: "自媒体截图助手",
+    description:
+      "Chrome 浏览器扩展，专为内容创作者设计。支持按 9 大自媒体平台的 22 种官方推荐尺寸一键框选截图，还有侧面板 URL 预览截图功能。",
+    tech: ["Chrome MV3", "JavaScript", "Canvas"],
+    status: "已完成",
+  },
+  {
+    title: "灵感小签",
+    description:
+      "一款 iOS 灵感抽签应用。随机抽取创意灵感卡片，支持收藏喜欢的灵感、查看抽签记录，帮你在灵感枯竭时找到新方向。",
+    tech: ["Swift", "SwiftUI", "iOS"],
+    status: "已完成",
+  },
+  {
+    title: "Yuki 画册",
+    description:
+      "为小朋友打造的私人数字画册 iOS 应用。收录展示每一幅画作，记录创作故事和成长信息，支持家人朋友共享和留言互动。",
+    tech: ["Swift", "SwiftUI", "SwiftData", "CloudKit"],
+    status: "开发中",
+  },
+  {
     title: "车咖 GEO 系统",
     description:
       "GEO（Generative Engine Optimization）优化分析平台。帮助分析和优化内容在 AI 搜索引擎中的表现。已部署到火山引擎云服务器。",
