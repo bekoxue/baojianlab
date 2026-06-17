@@ -11,15 +11,21 @@ const featuredProjects = [
     external: true,
   },
   {
-    title: "长截图 App",
-    description: "iPhone 截图自动拼接工具",
-    tech: "Swift · iOS · 图像处理",
+    title: "自媒体截图助手",
+    description: "Chrome 扩展，一键按 9 大平台 22 种官方尺寸截图",
+    tech: "Chrome MV3 · JavaScript · Canvas",
     href: "/projects",
   },
   {
-    title: "车咖 GEO 系统",
-    description: "GEO 优化分析平台",
-    tech: "Python · FastAPI · 云部署",
+    title: "Yuki 画册",
+    description: "小朋友的私人数字画册，记录每一幅创作故事",
+    tech: "Swift · SwiftUI · SwiftData · CloudKit",
+    href: "/projects",
+  },
+  {
+    title: "长截图 App",
+    description: "iPhone 截图自动拼接工具",
+    tech: "Swift · iOS · 图像处理",
     href: "/projects",
   },
 ];
