@@ -4,6 +4,13 @@ import { FadeIn, FadeInStagger, FadeInItem, HoverScale } from "@/components/moti
 
 const featuredProjects = [
   {
+    title: "MindJournal",
+    description: "AI 驱动的智能日记，写下今天，读懂自己",
+    tech: "Next.js · Claude AI · Supabase",
+    href: "https://mindjournalai.netlify.app/",
+    external: true,
+  },
+  {
     title: "长截图 App",
     description: "iPhone 截图自动拼接工具",
     tech: "Swift · iOS · 图像处理",
@@ -83,22 +90,41 @@ export default function Home() {
           <h2 className="text-lg font-medium text-near-black mb-8">精选项目</h2>
         </FadeIn>
         <FadeInStagger className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {featuredProjects.map((project) => (
-            <FadeInItem key={project.title}>
-              <HoverScale>
-                <Link
-                  href={project.href}
-                  className="group block rounded-lg border border-sand/80 bg-surface p-5 hover:border-sand transition-colors"
-                >
-                  <h3 className="text-[15px] font-medium text-near-black group-hover:text-ink transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-olive">{project.description}</p>
-                  <p className="mt-3 text-xs text-stone">{project.tech}</p>
-                </Link>
-              </HoverScale>
-            </FadeInItem>
-          ))}
+          {featuredProjects.map((project) => {
+            const CardContent = (
+              <>
+                <h3 className="text-[15px] font-medium text-near-black group-hover:text-ink transition-colors">
+                  {project.title}
+                  {project.external && <span className="ml-1 text-xs text-stone">↗</span>}
+                </h3>
+                <p className="mt-2 text-sm text-olive">{project.description}</p>
+                <p className="mt-3 text-xs text-stone">{project.tech}</p>
+              </>
+            );
+            return (
+              <FadeInItem key={project.title}>
+                <HoverScale>
+                  {project.external ? (
+                    <a
+                      href={project.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group block rounded-lg border border-sand/80 bg-surface p-5 hover:border-sand transition-colors"
+                    >
+                      {CardContent}
+                    </a>
+                  ) : (
+                    <Link
+                      href={project.href}
+                      className="group block rounded-lg border border-sand/80 bg-surface p-5 hover:border-sand transition-colors"
+                    >
+                      {CardContent}
+                    </Link>
+                  )}
+                </HoverScale>
+              </FadeInItem>
+            );
+          })}
         </FadeInStagger>
       </section>
     </div>
