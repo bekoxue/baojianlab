@@ -12,7 +12,7 @@ const projects = [
       "写下今天，读懂自己。Claude AI 驱动的智能日记应用，支持 AI 情感识别、思维模式分析和成长信号检测，帮助你通过书写发现内心深处的自己。",
     tech: ["Next.js", "TypeScript", "Claude AI", "Supabase", "Netlify"],
     status: "已上线",
-    link: "https://mindjournalai.netlify.app/",
+    link: "https://mindjournal.baojianlab.com",
     github: "https://github.com/bekoxue/mindjournal",
   },
   {

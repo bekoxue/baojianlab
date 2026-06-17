@@ -7,7 +7,7 @@ const featuredProjects = [
     title: "MindJournal",
     description: "AI 驱动的智能日记，写下今天，读懂自己",
     tech: "Next.js · Claude AI · Supabase",
-    href: "https://mindjournalai.netlify.app/",
+    href: "https://mindjournal.baojianlab.com",
     external: true,
   },
   {
