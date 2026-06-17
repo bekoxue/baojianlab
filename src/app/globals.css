@@ -1,26 +1,144 @@
 @import "tailwindcss";
 
+/* ── Kami-inspired Design Tokens ── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-canvas: #F5F4ED;
+  --color-surface: #FAF9F5;
+  --color-sand: #E8E6DC;
+  --color-ink-blue: #1B365D;
+  --color-ink-light: #2D5A8A;
+  --color-near-black: #141413;
+  --color-dark-warm: #3D3D3A;
+  --color-olive: #504e49;
+  --color-stone: #6b6a64;
+  --color-error: #B53333;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-canvas: var(--color-canvas);
+  --color-surface: var(--color-surface);
+  --color-sand: var(--color-sand);
+  --color-ink: var(--color-ink-blue);
+  --color-ink-light: var(--color-ink-light);
+  --color-near-black: var(--color-near-black);
+  --color-warm: var(--color-dark-warm);
+  --color-olive: var(--color-olive);
+  --color-stone: var(--color-stone);
+  --font-serif: var(--font-noto-serif);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-canvas);
+  color: var(--color-near-black);
+}
+
+::selection {
+  background-color: #1B365D;
+  color: #F5F4ED;
+}
+
+/* ── Prose Styles ── */
+.prose h1, .prose h2, .prose h3 {
+  font-weight: 500;
+  color: var(--color-near-black);
+}
+
+.prose h1 { font-size: 1.5rem; line-height: 1.2; margin-top: 2.5rem; margin-bottom: 1rem; }
+.prose h2 { font-size: 1.25rem; line-height: 1.25; margin-top: 2.5rem; margin-bottom: 0.75rem; }
+.prose h3 { font-size: 1.1rem; line-height: 1.3; margin-top: 2rem; margin-bottom: 0.5rem; }
+
+.prose p {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--color-olive);
+  margin-bottom: 1.25rem;
+}
+
+.prose a {
+  color: var(--color-ink-blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: #1B365D40;
+  transition: text-decoration-color 0.2s;
+}
+
+.prose a:hover {
+  text-decoration-color: #1B365D;
+}
+
+.prose strong {
+  font-weight: 600;
+  color: var(--color-near-black);
+}
+
+.prose em {
+  font-style: italic;
+}
+
+.prose ul, .prose ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.prose li {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--color-olive);
+  margin-bottom: 0.5rem;
+}
+
+.prose ul > li { list-style-type: disc; }
+.prose ol > li { list-style-type: decimal; }
+
+.prose blockquote {
+  border-left: 3px solid var(--color-ink-blue);
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  color: var(--color-stone);
+  font-style: italic;
+}
+
+.prose code {
+  font-family: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  background-color: var(--color-sand);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  color: var(--color-near-black);
+}
+
+.prose pre {
+  background-color: #1e1e1e;
+  color: #d4d4d4;
+  border-radius: 8px;
+  padding: 1.25rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.prose pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--color-sand);
+  margin: 2rem 0;
+}
+
+.prose img {
+  border-radius: 8px;
+  margin: 1.5rem 0;
+}
+
+/* ── Smooth Transitions ── */
+a, button {
+  transition: color 0.2s, opacity 0.2s;
 }

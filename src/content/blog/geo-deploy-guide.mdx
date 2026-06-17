@@ -1,0 +1,56 @@
+---
+title: "GEO 系统部署到云服务器的踩坑实录"
+date: "2026-06-05"
+excerpt: "火山引擎服务器部署的全流程，包括踩过的各种坑。"
+tag: "运维笔记"
+---
+
+## 背景
+
+车咖 GEO 系统是一个用 FastAPI 构建的 Web 应用，需要部署到云服务器让用户访问。我选择了火山引擎作为云服务商。
+
+## 部署流程
+
+### 1. 服务器准备
+
+购买了一台火山引擎 ECS 实例，基本配置：
+
+- 系统：Ubuntu 22.04
+- 规格：2 核 4G
+- 带宽：5Mbps
+
+### 2. 环境配置
+
+```bash
+# 安装 Python 环境
+sudo apt update
+sudo apt install python3.11 python3.11-venv
+
+# 创建虚拟环境
+python3.11 -m venv venv
+source venv/bin/activate
+
+# 安装依赖
+pip install -r requirements.txt
+```
+
+### 3. 踩坑记录
+
+**坑 1：安全组端口未开放**
+
+这是最容易忽略的问题。服务在服务器上启动成功了，但外部访问不了。原因是火山引擎的安全组默认只开放了 22 端口（SSH），需要手动添加 18080 端口的入站规则。
+
+**坑 2：进程管理**
+
+直接用 `python main.py` 启动的话，SSH 断开后进程就停了。需要用 `systemd` 或 `supervisor` 来管理进程：
+
+```bash
+# 使用 nohup 临时方案
+nohup python main.py > app.log 2>&1 &
+```
+
+## 经验总结
+
+- 部署前先列清单，逐项检查
+- 安全组配置是最常被遗忘的一步
+- 日志很重要，出问题时是你唯一的线索

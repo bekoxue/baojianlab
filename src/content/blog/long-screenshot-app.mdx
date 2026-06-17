@@ -1,0 +1,42 @@
+---
+title: "iPhone 长截图 App：从 Python 验证到 iOS 开发"
+date: "2026-06-10"
+excerpt: "如何把一个简单的 Python 脚本变成一个完整的 iOS App。"
+tag: "项目开发"
+---
+
+## 问题的起点
+
+你有没有遇到过这样的场景：想保存一个很长的聊天记录或网页内容，但 iPhone 的截图只能截一屏？
+
+虽然有些 App 支持滚动截图，但效果往往不理想 —— 拼接处有明显的断裂，或者需要手动调整。我想做一个更好的解决方案。
+
+## Python 验证阶段
+
+在开始 iOS 开发之前，我先用 Python 验证了核心算法的可行性：
+
+```python
+import cv2
+import numpy as np
+
+def find_overlap(img1, img2):
+    """检测两张截图的重叠区域"""
+    # 使用模板匹配找到最佳重叠位置
+    result = cv2.matchTemplate(
+        img1[-200:], img2[:200], cv2.TM_CCOEFF_NORMED
+    )
+    _, max_val, _, max_loc = cv2.minMaxLoc(result)
+    return max_loc, max_val
+```
+
+实验结果表明，基于 **模板匹配** 的方法在大多数场景下都能准确找到重叠区域。
+
+## 下一步：iOS 原生开发
+
+Python 验证通过后，下一步是用 Swift 实现 iOS 版本。主要挑战包括：
+
+- **性能优化**：移动端的计算资源有限，需要优化算法效率
+- **用户体验**：设计简洁直觉的操作流程
+- **系统集成**：与 iOS 相册和分享功能的无缝对接
+
+这个项目还在进行中，后续会持续更新开发进展。

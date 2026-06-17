@@ -1,65 +1,106 @@
-import Image from "next/image";
+import Link from "next/link";
+import { getAllPosts } from "@/lib/blog";
+import { FadeIn, FadeInStagger, FadeInItem, HoverScale } from "@/components/motion";
+
+const featuredProjects = [
+  {
+    title: "长截图 App",
+    description: "iPhone 截图自动拼接工具",
+    tech: "Swift · iOS · 图像处理",
+    href: "/projects",
+  },
+  {
+    title: "车咖 GEO 系统",
+    description: "GEO 优化分析平台",
+    tech: "Python · FastAPI · 云部署",
+    href: "/projects",
+  },
+];
 
 export default function Home() {
+  const recentPosts = getAllPosts().slice(0, 3);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="mx-auto max-w-2xl px-6">
+      {/* Hero */}
+      <section className="pt-20 pb-16">
+        <FadeIn>
+          <h1 className="text-3xl font-medium leading-snug text-near-black">
+            你好，我是宝坚
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+        </FadeIn>
+        <FadeIn delay={0.15}>
+          <p className="mt-5 text-base leading-relaxed text-olive max-w-lg">
+            一个对 AI 充满好奇的探索者，正在用代码把想法变成现实。
+            <br />
+            这里记录我的学习、思考和作品。
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        </FadeIn>
+        <FadeIn delay={0.3}>
+          <div className="mt-6 h-[3px] w-10 rounded-full bg-ink" />
+        </FadeIn>
+      </section>
+
+      {/* Recent Posts */}
+      <section className="pb-16">
+        <FadeIn delay={0.35}>
+          <h2 className="text-lg font-medium text-near-black mb-8">近期文章</h2>
+        </FadeIn>
+        <FadeInStagger>
+          <ul className="space-y-0">
+            {recentPosts.map((post) => (
+              <FadeInItem key={post.slug}>
+                <li>
+                  <Link
+                    href={`/blog/${post.slug}`}
+                    className="group flex items-baseline justify-between py-4 border-b border-dashed border-sand/80 hover:border-sand transition-colors"
+                  >
+                    <span className="text-[15px] font-medium text-ink group-hover:text-ink-light transition-colors">
+                      {post.title}
+                    </span>
+                    <span className="text-xs text-stone ml-4 whitespace-nowrap">
+                      {post.date}
+                    </span>
+                  </Link>
+                </li>
+              </FadeInItem>
+            ))}
+          </ul>
+        </FadeInStagger>
+        <FadeIn delay={0.6}>
+          <Link
+            href="/blog"
+            className="inline-block mt-6 text-sm text-stone hover:text-ink transition-colors"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+            查看全部文章 →
+          </Link>
+        </FadeIn>
+      </section>
+
+      {/* Featured Projects */}
+      <section className="pb-20">
+        <FadeIn delay={0.5}>
+          <h2 className="text-lg font-medium text-near-black mb-8">精选项目</h2>
+        </FadeIn>
+        <FadeInStagger className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {featuredProjects.map((project) => (
+            <FadeInItem key={project.title}>
+              <HoverScale>
+                <Link
+                  href={project.href}
+                  className="group block rounded-lg border border-sand/80 bg-surface p-5 hover:border-sand transition-colors"
+                >
+                  <h3 className="text-[15px] font-medium text-near-black group-hover:text-ink transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-olive">{project.description}</p>
+                  <p className="mt-3 text-xs text-stone">{project.tech}</p>
+                </Link>
+              </HoverScale>
+            </FadeInItem>
+          ))}
+        </FadeInStagger>
+      </section>
     </div>
   );
 }
