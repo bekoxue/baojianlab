@@ -7,6 +7,15 @@ export const metadata: Metadata = {
 
 const projects = [
   {
+    title: "MindJournal",
+    description:
+      "写下今天，读懂自己。Claude AI 驱动的智能日记应用，支持 AI 情感识别、思维模式分析和成长信号检测，帮助你通过书写发现内心深处的自己。",
+    tech: ["Next.js", "TypeScript", "Claude AI", "Supabase", "Netlify"],
+    status: "已上线",
+    link: "https://mindjournalai.netlify.app/",
+    github: "https://github.com/bekoxue/mindjournal",
+  },
+  {
     title: "长截图 App",
     description:
       "一个 iPhone 截图自动拼接工具。先用 Python 完成了核心算法验证，正在开发 iOS 原生版本。支持自动检测重叠区域并无缝拼接。",
@@ -23,9 +32,11 @@ const projects = [
   {
     title: "个人网站",
     description:
-      "你正在看的这个网站。基于 Next.js 15 搭建，采用 Kami 设计系统的暖色调风格，部署在 Vercel 上。",
+      "你正在看的这个网站。基于 Next.js 16 搭建，采用 Kami 设计系统的暖色调风格，部署在 Vercel 上。",
     tech: ["Next.js", "Tailwind CSS", "TypeScript"],
     status: "已上线",
+    link: "https://baojianlab.com",
+    github: "https://github.com/bekoxue/baojianlab",
   },
 ];
 
@@ -61,15 +72,41 @@ export default function ProjectsPage() {
             <p className="mt-3 text-sm text-olive leading-relaxed">
               {project.description}
             </p>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {project.tech.map((t) => (
-                <span
-                  key={t}
-                  className="text-xs text-stone bg-sand/40 px-2 py-0.5 rounded"
-                >
-                  {t}
-                </span>
-              ))}
+            <div className="mt-4 flex items-center justify-between">
+              <div className="flex flex-wrap gap-2">
+                {project.tech.map((t) => (
+                  <span
+                    key={t}
+                    className="text-xs text-stone bg-sand/40 px-2 py-0.5 rounded"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+              {(project.link || project.github) && (
+                <div className="flex gap-3 text-xs">
+                  {project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-ink hover:text-ink-light transition-colors"
+                    >
+                      访问 ↗
+                    </a>
+                  )}
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-stone hover:text-ink transition-colors"
+                    >
+                      GitHub ↗
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
           </article>
         ))}
