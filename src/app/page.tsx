@@ -108,21 +108,21 @@ export default function Home() {
               </>
             );
             return (
-              <FadeInItem key={project.title}>
-                <HoverScale>
+              <FadeInItem key={project.title} className="h-full">
+                <HoverScale className="h-full">
                   {project.external ? (
                     <a
                       href={project.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group block rounded-lg border border-sand/80 bg-surface p-5 hover:border-sand transition-colors"
+                      className="group block h-full rounded-lg border border-sand/80 bg-surface p-5 hover:border-sand transition-colors"
                     >
                       {CardContent}
                     </a>
                   ) : (
                     <Link
                       href={project.href}
-                      className="group block rounded-lg border border-sand/80 bg-surface p-5 hover:border-sand transition-colors"
+                      className="group block h-full rounded-lg border border-sand/80 bg-surface p-5 hover:border-sand transition-colors"
                     >
                       {CardContent}
                     </Link>
